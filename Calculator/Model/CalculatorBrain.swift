@@ -44,8 +44,10 @@ struct CalculatorBrain{
     mutating func clearAll(){
         operation = ""
         result = 0
+        count = 0
     }
     mutating func clearResult(){
         result = 0
+        count = 0
     }
 }
