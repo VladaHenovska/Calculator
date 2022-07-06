@@ -40,7 +40,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func calculatePressed(_ sender: UIButton) {
         if let number = numberTextLabel.text{
             calculatorBrain.calculate(number, calculatorBrain.operation)

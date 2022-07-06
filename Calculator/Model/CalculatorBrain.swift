@@ -14,21 +14,27 @@ struct CalculatorBrain{
     var result = 0
     
     
-    mutating func calculate(_ number: String, _ ops: String?){
-        
-        //Check if there is another number to perform operation
+    mutating func calculate(_ numberStr: String, _ ops: String?){
+        var number = Int(numberStr) ?? 0
+//Change number sign if "+/-" pressed
+        if ops == "+/-"{
+            number = -number
+        }
+//Check if there is another number to perform operation
         if count == 0{
-            result = Int(number)!
+            result = number
         }else if count != 0{
             switch operation{
             case "+":
-                result += Int(number)!
+                result += number
             case "-":
-                result -= Int(number)!
+                result -= number
             case "×":
-                result *= Int(number)!
+                result *= number
             case "÷":
-                result /= Int(number)!
+                result /= number
+            case "+/-":
+                result = number
             default:
                 print("Unknown operation")
             }
