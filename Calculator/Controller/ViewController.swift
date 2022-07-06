@@ -13,42 +13,18 @@ class ViewController: UIViewController {
     
     var calculatorBrain = CalculatorBrain()
     var flag = false
-    var count = 0
-    var result = 0
-    var operation = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         numberTextLabel.text = ""
-        
-        
     }
     
     @IBAction func operationPressed(_ sender: UIButton) {
         flag = true
-        if let number = numberTextLabel.text {
+        if let number = numberTextLabel.text, let operation = sender.currentTitle {
             print("Number button: \(number)")
-            if count == 0{
-                result = Int(number)!
-                count += 1
-                operation = sender.currentTitle!
-            }else if count != 0{
-                switch operation{
-                case "+":
-                    result += Int(number)!
-                case "-":
-                    result -= Int(number)!
-                case "×":
-                    result = result * Int(number)!
-                case "÷":
-                    result = result/Int(number)!
-                default:
-                    print("Unknown operation")
-                }
-                print("Result: \(result)")
-                numberTextLabel.text = String(result)
-                operation = sender.currentTitle!
-            }
+            calculatorBrain.calculate(number, operation)
+            numberTextLabel.text = calculatorBrain.resultToString()
         }
     }
     
@@ -67,22 +43,11 @@ class ViewController: UIViewController {
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         if let number = numberTextLabel.text{
-            switch operation{
-            case "+":
-                result += Int(number)!
-            case "-":
-                result -= Int(number)!
-            case "×":
-                result = result * Int(number)!
-            case "÷":
-                result = result/Int(number)!
-            default:
-                print("Unknown operation")
-            }
+            calculatorBrain.calculate(number, calculatorBrain.operation)
         }
-        numberTextLabel.text = String(result)
+        numberTextLabel.text = calculatorBrain.resultToString()
         flag = true
-        count = 0
+        calculatorBrain.result = 0
     }
     
 }
