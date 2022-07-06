@@ -14,13 +14,14 @@ class ViewController: UIViewController {
     var calculatorBrain = CalculatorBrain()
     var flag = false
     var count = 0
-    var array = [0]
     var result = 0
     var operation = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         numberTextLabel.text = ""
+        
+        
     }
     
     @IBAction func operationPressed(_ sender: UIButton) {
@@ -37,8 +38,12 @@ class ViewController: UIViewController {
                     result += Int(number)!
                 case "-":
                     result -= Int(number)!
+                case "×":
+                    result = result * Int(number)!
+                case "÷":
+                    result = result/Int(number)!
                 default:
-                    print("Choose - or + operation")
+                    print("Unknown operation")
                 }
                 print("Result: \(result)")
                 numberTextLabel.text = String(result)
@@ -62,9 +67,21 @@ class ViewController: UIViewController {
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         if let number = numberTextLabel.text{
-            result += Int(number)!
+            switch operation{
+            case "+":
+                result += Int(number)!
+            case "-":
+                result -= Int(number)!
+            case "×":
+                result = result * Int(number)!
+            case "÷":
+                result = result/Int(number)!
+            default:
+                print("Unknown operation")
+            }
         }
         numberTextLabel.text = String(result)
+        flag = true
         count = 0
     }
     
