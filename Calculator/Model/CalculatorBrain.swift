@@ -41,4 +41,11 @@ struct CalculatorBrain{
     func resultToString() -> String{
         String(result)
     }
+    mutating func clearAll(){
+        operation = ""
+        result = 0
+    }
+    mutating func clearResult(){
+        result = 0
+    }
 }
