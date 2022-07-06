@@ -47,8 +47,14 @@ class ViewController: UIViewController {
         }
         numberTextLabel.text = calculatorBrain.resultToString()
         flag = true
-        calculatorBrain.result = 0
+        calculatorBrain.clearResult()
     }
+    
+    @IBAction func ACpressed(_ sender: UIButton) {
+        numberTextLabel.text = ""
+        calculatorBrain.clearAll()
+    }
+    
     
 }
 
